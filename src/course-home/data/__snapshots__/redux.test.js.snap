@@ -19,6 +19,10 @@ Object {
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
   },
+  "feedbackWidget": Object {
+    "createWholeCourseTranslationFeedbackStatus": "unset",
+    "fetchWholeCourseTranslationFeedbackStatus": "unset",
+  },
   "learningAssistant": ObjectContaining {
     "conversationId": Any<String>,
   },
@@ -40,6 +44,7 @@ Object {
         "isMasquerading": false,
         "isSelfPaced": false,
         "isStaff": false,
+        "language": undefined,
         "number": "DemoX",
         "org": "edX",
         "originalUserIsStaff": false,
@@ -405,6 +410,10 @@ Object {
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
   },
+  "feedbackWidget": Object {
+    "createWholeCourseTranslationFeedbackStatus": "unset",
+    "fetchWholeCourseTranslationFeedbackStatus": "unset",
+  },
   "learningAssistant": ObjectContaining {
     "conversationId": Any<String>,
   },
@@ -426,6 +435,7 @@ Object {
         "isMasquerading": false,
         "isSelfPaced": false,
         "isStaff": false,
+        "language": undefined,
         "number": "DemoX",
         "org": "edX",
         "originalUserIsStaff": false,
@@ -669,6 +679,10 @@ Object {
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
   },
+  "feedbackWidget": Object {
+    "createWholeCourseTranslationFeedbackStatus": "unset",
+    "fetchWholeCourseTranslationFeedbackStatus": "unset",
+  },
   "learningAssistant": ObjectContaining {
     "conversationId": Any<String>,
   },
@@ -690,6 +704,7 @@ Object {
         "isMasquerading": false,
         "isSelfPaced": false,
         "isStaff": false,
+        "language": undefined,
         "number": "DemoX",
         "org": "edX",
         "originalUserIsStaff": false,

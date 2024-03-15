@@ -6,6 +6,7 @@ import { reducer as coursewareReducer } from './courseware/data/slice';
 import { reducer as recommendationsReducer } from './courseware/course/course-exit/data/slice';
 import { reducer as toursReducer } from './product-tours/data';
 import { reducer as modelsReducer } from './generic/model-store';
+import { reducer as feedbackWidgetReducer } from './courseware/course/sequence/Unit/feedback-widget/data/slice';
 
 export default function initializeStore() {
   return configureStore({
@@ -17,6 +18,7 @@ export default function initializeStore() {
       specialExams: specialExamsReducer,
       recommendations: recommendationsReducer,
       tours: toursReducer,
+      feedbackWidget: feedbackWidgetReducer,
     },
   });
 }

@@ -14,10 +14,14 @@ import { modelKeys, views } from './constants';
 import { useExamAccess, useShouldDisplayHonorCode } from './hooks';
 import { getIFrameUrl } from './urls';
 import TranslationSelection from './translation-selection';
-import useSelectLanguage from './translation-selection/useSelectLanguage';
 
 const Unit = ({
-  courseId, format, onLoaded, id,
+  courseId,
+  format,
+  onLoaded,
+  id,
+  selectedLanguage,
+  setSelectedLanguage,
 }) => {
   const { formatMessage } = useIntl();
   const { authenticatedUser } = React.useContext(AppContext);
@@ -27,10 +31,6 @@ const Unit = ({
   const { language, wholeCourseTranslationEnabled } = useModel('courseHomeMeta', courseId);
   const isProcessing = unit.bookmarkedUpdateState === 'loading';
   const view = authenticatedUser ? views.student : views.public;
-  const { selectedLanguage, setSelectedLanguage } = useSelectLanguage({
-    courseId,
-    language,
-  });
 
   const iframeUrl = useMemo(() => getIFrameUrl({
     id,
@@ -78,6 +78,8 @@ Unit.propTypes = {
   format: PropTypes.string,
   id: PropTypes.string.isRequired,
   onLoaded: PropTypes.func,
+  selectedLanguage: PropTypes.string.isRequired,
+  setSelectedLanguage: PropTypes.func.isRequired,
 };
 
 Unit.defaultProps = {

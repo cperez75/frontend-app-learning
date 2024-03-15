@@ -2,9 +2,11 @@
 import React, {
   useEffect, useState,
 } from 'react';
-import { getConfig } from '@edx/frontend-platform';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import { getConfig } from '@edx/frontend-platform';
+import { AppContext } from '@edx/frontend-platform/react';
 import {
   sendTrackEvent,
   sendTrackingLogEvent,
@@ -28,6 +30,7 @@ import HiddenAfterDue from './hidden-after-due';
 import { SequenceNavigation, UnitNavigation } from './sequence-navigation';
 import SequenceContent from './SequenceContent';
 import FeedbackWidget from './Unit/feedback-widget';
+import useSelectLanguage from './Unit/translation-selection/useSelectLanguage';
 
 const Sequence = ({
   unitId,
@@ -38,14 +41,16 @@ const Sequence = ({
   previousSequenceHandler,
 }) => {
   const intl = useIntl();
+  const { authenticatedUser: { userId } } = React.useContext(AppContext);
   const {
     canAccessProctoredExams,
     license,
-    wholeCourseTranslationEnabled,
   } = useModel('coursewareMeta', courseId);
   const {
     isStaff,
     originalUserIsStaff,
+    language,
+    wholeCourseTranslationEnabled,
   } = useModel('courseHomeMeta', courseId);
   const sequence = useModel('sequences', sequenceId);
   const unit = useModel('units', unitId);
@@ -53,6 +58,10 @@ const Sequence = ({
   const sequenceMightBeUnit = useSelector(state => state.courseware.sequenceMightBeUnit);
   const shouldDisplayNotificationTriggerInSequence = useWindowSize().width < breakpoints.small.minWidth;
   const enableNewSidebar = getConfig().ENABLE_NEW_SIDEBAR;
+  const { selectedLanguage, setSelectedLanguage } = useSelectLanguage({
+    courseId,
+    language,
+  });
 
   const handleNext = (position) => {
     logEvent('edx.ui.lms.sequence.next_selected', position);
@@ -178,6 +187,8 @@ const Sequence = ({
               courseId={courseId}
               gated={gated}
               sequenceId={sequenceId}
+              selectedLanguage={selectedLanguage}
+              setSelectedLanguage={setSelectedLanguage}
               unitId={unitId}
               unitLoadedHandler={handleUnitLoaded}
             />
@@ -199,9 +210,12 @@ const Sequence = ({
       </div>
       {
         wholeCourseTranslationEnabled && (
-          <div className="sequence-container d-inline-flex flex-row">
-            <FeedbackWidget />
-          </div>
+          <FeedbackWidget
+            courseId={courseId}
+            translationLanguage={selectedLanguage}
+            unitId={unitId}
+            userId={userId}
+          />
         )
       }
     </>

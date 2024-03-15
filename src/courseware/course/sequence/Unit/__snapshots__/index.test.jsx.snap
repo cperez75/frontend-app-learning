@@ -30,8 +30,6 @@ exports[`Unit component output TranslationSelection renders if wholeCourseTransl
     </h3>
     <TranslationSelection
       courseId="test-course-id"
-      selectedLanguage="en"
-      setSelectedLanguage={[MockFunction setSelectedLanguage]}
     />
   </div>
   <h2
