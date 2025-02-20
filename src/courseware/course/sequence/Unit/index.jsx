@@ -7,6 +7,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { useModel } from '../../../../generic/model-store';
 
 import BookmarkButton from '../../bookmark/BookmarkButton';
+import VoteButton from '../../vote/VoteButton';
 import messages from '../messages';
 import ContentIFrame from './ContentIFrame';
 import UnitSuspense from './UnitSuspense';
@@ -43,6 +44,10 @@ const Unit = ({
         unitId={unit.id}
         isBookmarked={unit.bookmarked}
         isProcessing={isProcessing}
+      />
+      <VoteButton
+        courseId={courseId}
+        unitId={unit.id}
       />
       <UnitSuspense {...{ courseId, id }} />
       <ContentIFrame
