@@ -17,7 +17,7 @@ const VoteButton = ({
     }
   }, [unitId, courseId]);
   
-/*  const handleVoteClick = useCallback((value) => {
+  const handleVoteClick = useCallback((value) => {
     API.vote(courseId, unitId, value);
   }, [unitId, courseId]);
 
@@ -39,7 +39,7 @@ const VoteButton = ({
         />
       ))}
     </div>
-  );*/
+  );
 };
 
 VoteButton.propTypes = {
