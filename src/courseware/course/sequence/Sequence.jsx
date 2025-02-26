@@ -140,28 +140,26 @@ const Sequence = ({
   const gated = sequence && sequence.gatedContent !== undefined && sequence.gatedContent.gated;
 
   const defaultContent = (
-    <div className="sequence-container d-inline-flex flex-row w-100">
+    <div className="sequence-container d-inline-flex flex-row">
       <div className={classNames('sequence w-100', { 'position-relative': shouldDisplayNotificationTriggerInSequence })}>
-        <div className="sequence-navigation-container">
-          <SequenceNavigation
-            sequenceId={sequenceId}
-            unitId={unitId}
-            className="mb-4"
-            nextHandler={() => {
-              logEvent('edx.ui.lms.sequence.next_selected', 'top');
-              handleNext();
-            }}
-            onNavigate={(destinationUnitId) => {
-              logEvent('edx.ui.lms.sequence.tab_selected', 'top', destinationUnitId);
-              handleNavigate(destinationUnitId);
-            }}
-            previousHandler={() => {
-              logEvent('edx.ui.lms.sequence.previous_selected', 'top');
-              handlePrevious();
-            }}
-          />
-          {shouldDisplayNotificationTriggerInSequence && <SidebarTriggers />}
-        </div>
+        <SequenceNavigation
+          sequenceId={sequenceId}
+          unitId={unitId}
+          className="mb-4"
+          nextHandler={() => {
+            logEvent('edx.ui.lms.sequence.next_selected', 'top');
+            handleNext();
+          }}
+          onNavigate={(destinationUnitId) => {
+            logEvent('edx.ui.lms.sequence.tab_selected', 'top', destinationUnitId);
+            handleNavigate(destinationUnitId);
+          }}
+          previousHandler={() => {
+            logEvent('edx.ui.lms.sequence.previous_selected', 'top');
+            handlePrevious();
+          }}
+        />
+        {shouldDisplayNotificationTriggerInSequence && <SidebarTriggers />}
 
         <div className="unit-container flex-grow-1">
           <SequenceContent

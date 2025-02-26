@@ -16,7 +16,7 @@ import { GetCourseExitNavigation } from '../../course-exit';
 import UnitButton from './UnitButton';
 import SequenceNavigationTabs from './SequenceNavigationTabs';
 import { useSequenceNavigationMetadata } from './hooks';
-import { useModel, useUnit } from '../../../../generic/model-store';
+import { useModel } from '../../../../generic/model-store';
 import { LOADED } from '../../../data/slice';
 
 import messages from './messages';
@@ -85,14 +85,14 @@ const SequenceNavigation = ({
   };
 
   const renderNextButton = () => {
-    const { exitActive, exitText } = GetCourseExitNavigation(courseId, intl);
-    const unit = useUnit(unitId);
-    const hasUnsubmittedProblem = unit?.blocks?.some(block => {
+    const { exitText } = GetCourseExitNavigation(courseId, intl);
+    // const unit = useUnit(unitId);
+    /* const hasUnsubmittedProblem = unit?.blocks?.some(block =>{
       return ['problem', 'test', 'exam'].includes(block.type) && !block.submitted;
-    });
+    }); */
     const buttonText = (isLastUnit && exitText) ? exitText : intl.formatMessage(messages.nextButton);
-    //const disabled = isLastUnit && !exitActive;
-    const disabled = isLastUnit || hasUnsubmittedProblem;
+    // const disabled = isLastUnit && !exitActive;
+    const disabled = isLastUnit; // || hasUnsubmittedProblem;
     const nextArrow = isRtl(getLocale()) ? ChevronLeft : ChevronRight;
 
     return (
