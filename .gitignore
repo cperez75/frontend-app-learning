@@ -7,7 +7,6 @@ node_modules
 npm-debug.log
 coverage
 
-dist/
 src/i18n/transifex_input.json
 temp/babel-plugin-react-intl
 logs
